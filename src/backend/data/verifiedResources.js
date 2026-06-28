@@ -1,0 +1,42 @@
+const verifiedResources = [
+  {
+    id: 1,
+    name: 'SafeStay Women\'s Hostel',
+    type: 'Verified Host',
+    category: 'women-only',
+    city: 'Delhi',
+    rating: 4.8,
+    address: 'Hauz Khas Village, New Delhi',
+    phone: '+91-98765-43210',
+    description: 'Women-only hostel with 24/7 security, CCTV, and female staff.',
+    verified: true,
+    amenities: ['CCTV', 'Female Staff', 'Lockers', 'Wi-Fi'],
+  },
+  {
+    id: 2,
+    name: 'TrustRide Women Cabs',
+    type: 'Women-Only Transport',
+    category: 'women-transport',
+    city: 'Delhi',
+    rating: 4.7,
+    phone: '+91-98765-11223',
+    description: 'All-women driver fleet with GPS-tracked rides and emergency buttons.',
+    verified: true,
+    amenities: ['GPS Tracked', 'Female Drivers', 'SOS Button', '24/7'],
+  },
+  {
+    id: 3,
+    name: 'Heritage Home BnB',
+    type: 'Verified Host',
+    category: 'homestay',
+    city: 'Jaipur',
+    rating: 4.6,
+    address: 'Near Hawa Mahal, Jaipur',
+    phone: '+91-94567-89012',
+    description: 'Family-run homestay verified by SafeTrip. Solo-traveler-friendly.',
+    verified: true,
+    amenities: ['Breakfast', 'Wi-Fi', 'Tour Guide', 'Airport Pickup'],
+  },
+];
+
+export default verifiedResources;

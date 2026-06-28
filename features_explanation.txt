@@ -1,0 +1,52 @@
+SafeTrip - Technical Feature Implementations (Academic Documentation)
+===================================================================
+
+1. Acoustic Sentinel (Voice-Activated SOS)
+-------------------------------------------
+* Core Functionality: A background safety monitor that listens for verbal distress cues (e.g., "help", "bachao") to automatically trigger the SOS system without requiring manual phone interaction.
+* Technology Stack & Implementation:
+  - Framework: React Hooks (useState, useEffect, useRef)
+  - Core API: HTML5 Web Speech API (window.SpeechRecognition / window.webkitSpeechRecognition)
+  - Implementation Details: The feature is encapsulated in a custom, reusable React hook (`useAcousticSentinel`). When activated, it mounts a SpeechRecognition instance configured for continuous listening and interim results. The engine's `onresult` event listener captures real-time audio transcripts, converts them to lowercase, and performs an array inclusion check against predefined distress keywords. 
+  - Engineering Challenge Addressed: To prevent the microphone from timing out natively in browsers, the hook utilizes the `onend` event to automatically restart the engine. Robust `useRef` state management was implemented to prevent infinite rendering loops and race conditions between React's declarative state changes and the imperative Web Speech API.
+
+2. Interactive Community Safety Map
+-------------------------------------------
+* Core Functionality: A dynamic geographic interface that displays color-coded safety zones and allows users to drop pinned incident reports (e.g., poor lighting, harassment) anywhere on the map grid.
+* Technology Stack & Implementation:
+  - Framework/Library: React Leaflet, Leaflet.js
+  - Core API: OpenStreetMap (OSM) Tile API
+  - Implementation Details: The map avoids proprietary, paid services (like Google Maps API) by utilizing open-source OSM raster tiles (`TileLayer`). Map nodes and boundaries are drawn using React Leaflet components (`<MapContainer>`, `<Circle>`, `<Marker>`). 
+  - Event Handling: Instead of standard DOM clicks, the app utilizes Leaflet's `useMapEvents` hook to bind coordinate-aware click listeners directly to the map canvas. This captures exact geospatial data (Latitude and Longitude) for user-generated Point-of-Interest reporting, injecting dynamic, custom-styled scalable vector graphics (SVGs) as markers (`L.divIcon`).
+
+3. Virtual SOS & Geolocation Tracking
+-------------------------------------------
+* Core Functionality: A one-tap emergency broadcast system that aggregates the user's current location and logs an emergency event to be dispatched to configured emergency contacts.
+* Technology Stack & Implementation:
+  - Core API: HTML5 Geolocation API (`navigator.geolocation`)
+  - State Management: React Context API, LocalStorage Data Persistence
+  - Implementation Details: The SOS button invokes asynchronous JavaScript promises to request high-accuracy coordinate polling from the browser (`getCurrentPosition`). It structures this geolocation payload alongside an ISO-8601 timestamp and user metadata. This payload is stored robustly in the browser's `localStorage` to simulate a database transaction and fetched globally via `AuthContext` to display in the user's SOS History dashboard.
+
+4. AI Itinerary Planner
+-------------------------------------------
+* Core Functionality: A generative artificial intelligence module that creates day-by-day travel schedules optimized for solo traveler safety based on user constraints.
+* Technology Stack & Implementation:
+  - External API: Google Gemini Generative AI API (`@google/genai`)
+  - Integration: Asynchronous API chaining, Prompt Engineering
+  - Implementation Details: The frontend aggregates form parameters (destination, duration, tempo) and executes an asynchronous request to a dedicated AI service handler. The request leverages strict Prompt Engineering, heavily instructing the Large Language Model (LLM) to return exact, parsable JSON structures rather than conversational text. The resulting JSON string is deserialized into native JavaScript objects (`JSON.parse()`) and mapped into a structured React chronological timeline component.
+
+5. Dynamic Safety Scoring Algorithm
+-------------------------------------------
+* Core Functionality: A mathematical aggregation system that updates an area's "Safety Score" automatically based on crowdsourced community ratings (1-10 stars).
+* Technology Stack & Implementation:
+  - Logic: Exponential Moving Average (EMA) Weighted Algorithm
+  - Implementation Details: The map's safety zones are not static. When a user submits a review via the map popup, the application recalculates the zone's safety score using a dynamically weighted average algorithm. 
+  - Algorithm Math: It computes a review weight `w = Math.min(reviews.length * 0.2, 0.8)`. This mathematical threshold guarantees that while community feedback can influence up to 80% of the zone's score, the original baseline baseline metric is never completely overwritten. The final formulation is `newScore = (baseline * (1 - w)) + (crowdAverage * w)`. This prevents small volumes of anomalous or troll reviews from immediately skewing the safety gradient of an area.
+
+6. Single-Page Application (SPA) Architecture
+-------------------------------------------
+* Core Functionality: A seamless, app-like navigation experience that transitions between the map, itinerary, resources, and profile modules without triggering full browser reloads.
+* Technology Stack & Implementation:
+  - Library: React Router (`react-router-dom`)
+  - Styling: Tailwind CSS (v4) with Custom CSS Variables
+  - Implementation Details: The application root (`App.jsx`) utilizes a client-side `<BrowserRouter>` and `<Routes>` configuration. By intercepting URL changes and rendering designated components, it minimizes server requests and latency. The layout dynamically manages nested states Context Providers (`AuthProvider`), ensuring user identity and preferences persist uninterrupted throughout the routing lifecycle.
