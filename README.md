@@ -8,7 +8,7 @@ This was built as a minor project, but the problem it addresses is real.
 
 ## The Problem
 
-Solo travelers — especially women — navigate a fragmented set of challenges: unreliable safety information about unfamiliar areas, no quick way to alert contacts during emergencies, and no personalized itinerary planning that factors in safety constraints. Existing solutions are either too generic or locked behind expensive APIs and premium plans.
+Solo travelers , especially women navigate a fragmented set of challenges: unreliable safety information about unfamiliar areas, no quick way to alert contacts during emergencies, and no personalized itinerary planning that factors in safety constraints. Existing solutions are either too generic or locked behind expensive APIs and premium plans.
 
 SafeTrip was designed to solve all three with open-source tools and zero paid APIs (except one — Gemini, which has a generous free tier).
 
@@ -19,7 +19,7 @@ SafeTrip was designed to solve all three with open-source tools and zero paid AP
 **Six core features, each solving a specific friction point:**
 
 **1. Acoustic Sentinel (Voice SOS)**
-Passively listens for verbal distress cues — "help", "bachao" — in the background and auto-triggers an SOS without the user needing to unlock their phone. Built on the HTML5 Web Speech API inside a custom React hook (`useAcousticSentinel`). Handles browser microphone timeout edge cases using auto-restart logic on the `onend` event.
+Passively listens for verbal distress cues like "help", "bachao"  in the background and auto-triggers an SOS without the user needing to unlock their phone. Built on the HTML5 Web Speech API inside a custom React hook (`useAcousticSentinel`). Handles browser microphone timeout edge cases using auto-restart logic on the `onend` event.
 
 **2. Community Safety Map**
 An interactive map showing color-coded safety zones across Indian cities. Users can drop incident pins (poor lighting, harassment, suspicious activity, road issues) anywhere on the map with a single click. Built with React Leaflet + OpenStreetMap — no Google Maps, no API costs.
