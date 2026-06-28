@@ -1,6 +1,6 @@
-# SafeTrip — Safety-First Travel Companion for Solo Travelers
+# SafeTrip : Safety-First Travel Companion for Solo Travelers
 
-Solo travel in India is growing, but the infrastructure for staying safe while doing it hasn't kept up. SafeTrip is a web application built to bridge that gap — giving travelers real-time safety intelligence, emergency tools, and AI-assisted planning in one place.
+Solo travel in India is growing, but the infrastructure for staying safe while doing it hasn't kept up. SafeTrip is a web application built to bridge that gap  giving travelers real-time safety intelligence, emergency tools, and AI-assisted planning in one place.
 
 This was built as a minor project, but the problem it addresses is real.
 
